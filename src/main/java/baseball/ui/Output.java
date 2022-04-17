@@ -27,7 +27,7 @@ public class Output {
     }
 
     public static void printCorrectAnswer() {
-        System.out.println(Application.MAX_LENGTH + CORRECT_ANSWER_AND_EXIT_MESSAGE);
+        System.out.println(Application.NUMBER_OF_DIGITS + CORRECT_ANSWER_AND_EXIT_MESSAGE);
     }
 
     public static void printExceptionMessage(String exceptionMessage) {
