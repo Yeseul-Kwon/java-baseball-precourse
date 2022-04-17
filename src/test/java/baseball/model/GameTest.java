@@ -15,7 +15,7 @@ public class GameTest {
 
     @BeforeAll
     static void initAll() {
-        game = new Game();
+        game = new Game(3);
 
         rightAnswer = new ArrayList<>();
         rightAnswer.add(1);
@@ -32,9 +32,9 @@ public class GameTest {
         inputAnswer.add(6);
 
         try {
-            Method method = game.getClass().getDeclaredMethod("gamePlay", ArrayList.class, ArrayList.class, int.class);
+            Method method = game.getClass().getDeclaredMethod("gamePlay", ArrayList.class, ArrayList.class);
             method.setAccessible(true);
-            Boolean isCorrect = (Boolean) method.invoke(game, rightAnswer, inputAnswer, 3);
+            Boolean isCorrect = (Boolean) method.invoke(game, rightAnswer, inputAnswer);
             assertThat(isCorrect).isEqualTo(false);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -50,9 +50,9 @@ public class GameTest {
         inputAnswer.add(4);
 
         try {
-            Method method = game.getClass().getDeclaredMethod("gamePlay", ArrayList.class, ArrayList.class, int.class);
+            Method method = game.getClass().getDeclaredMethod("gamePlay", ArrayList.class, ArrayList.class);
             method.setAccessible(true);
-            Boolean isCorrect = (Boolean) method.invoke(game, rightAnswer, inputAnswer, 3);
+            Boolean isCorrect = (Boolean) method.invoke(game, rightAnswer, inputAnswer);
             assertThat(isCorrect).isEqualTo(false);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -68,9 +68,9 @@ public class GameTest {
         inputAnswer.add(3);
 
         try {
-            Method method = game.getClass().getDeclaredMethod("gamePlay", ArrayList.class, ArrayList.class, int.class);
+            Method method = game.getClass().getDeclaredMethod("gamePlay", ArrayList.class, ArrayList.class);
             method.setAccessible(true);
-            Boolean isCorrect = (Boolean) method.invoke(game, rightAnswer, inputAnswer, 3);
+            Boolean isCorrect = (Boolean) method.invoke(game, rightAnswer, inputAnswer);
             assertThat(isCorrect).isEqualTo(true);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -86,9 +86,9 @@ public class GameTest {
         inputAnswer.add(1);
 
         try {
-            Method method = game.getClass().getDeclaredMethod("getBall", ArrayList.class, ArrayList.class, int.class);
+            Method method = game.getClass().getDeclaredMethod("getBall", ArrayList.class, ArrayList.class);
             method.setAccessible(true);
-            int ballCount = (int) method.invoke(game, rightAnswer, inputAnswer, 3);
+            int ballCount = (int) method.invoke(game, rightAnswer, inputAnswer);
             assertThat(ballCount).isEqualTo(2);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -104,9 +104,9 @@ public class GameTest {
         inputAnswer.add(1);
 
         try {
-            Method method = game.getClass().getDeclaredMethod("getStrike", ArrayList.class, ArrayList.class, int.class);
+            Method method = game.getClass().getDeclaredMethod("getStrike", ArrayList.class, ArrayList.class);
             method.setAccessible(true);
-            int ballCount = (int) method.invoke(game, rightAnswer, inputAnswer, 3);
+            int ballCount = (int) method.invoke(game, rightAnswer, inputAnswer);
             assertThat(ballCount).isEqualTo(1);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
