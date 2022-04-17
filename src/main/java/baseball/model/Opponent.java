@@ -8,28 +8,21 @@ public class Opponent {
     private ArrayList<Integer> answer;
 
     public Opponent() {
-        answer = new ArrayList<Integer>();
+        answer = new ArrayList<>();
     }
 
-    public ArrayList<Integer> getRightAnswer(int length) {
-        while (answer.size() < length) {
-            addNumber(answer);
+    public ArrayList<Integer> getRightAnswer(int numberOfDigit) {
+        while (answer.size() < numberOfDigit) {
+            addNumber();
         }
         return answer;
     }
 
-    private void addNumber(ArrayList<Integer> answer) {
+    private void addNumber() {
         int number = Randoms.pickNumberInRange(1, 9);
-        if (pickSuccess(answer, number)) {
-            answer.add(number);
+        answer.add(number);
+        if ((CommonFunction.overlapCheck(answer))) {
+            answer.remove(answer.size() - 1);
         }
     }
-
-    public static Boolean pickSuccess(ArrayList<Integer> pickNumberList, int pickNum) {
-        if (CommonFunction.overlapCheck(pickNumberList, pickNum)) {
-            return false;
-        }
-        return true;
-    }
-
 }
