@@ -1,20 +1,17 @@
 package baseball.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CommonFunction {
-    public static Boolean overlapCheck(ArrayList<Integer> target, int number) {
-        Boolean result = false;
-        for (int i = 0; i < target.size(); i++) {
-            result = result || comepareNumber(target.get(i), number);
-        }
-        return result;
+    public static Boolean overlapCheck(ArrayList<Integer> target) {
+        Set<Integer> notDuplicatedInput = new HashSet<>(target);
+        return !(notDuplicatedInput.size() == target.size());
+
     }
 
-    private static Boolean comepareNumber(int num1, int num2) {
-        if (num1 == num2) {
-            return true;
-        }
-        return false;
+    public static Boolean compareNumber(int num1, int num2) {
+        return (num1 == num2);
     }
 }
