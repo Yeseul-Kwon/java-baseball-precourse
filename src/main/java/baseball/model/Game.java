@@ -8,9 +8,6 @@ import java.util.ArrayList;
 public class Game {
     private int NUMBER_OF_DIGITS;
 
-    private ArrayList<Integer> rightAnswer;
-    private ArrayList<Integer> inputAnswer;
-
     public Game() {
     }
 
@@ -20,19 +17,19 @@ public class Game {
 
     public void gameStart() {
         Opponent opponent = new Opponent();
-        rightAnswer = opponent.getRightAnswer(NUMBER_OF_DIGITS);
+        ArrayList<Integer> rightAnswer = opponent.getRightAnswer(NUMBER_OF_DIGITS);
 
         Boolean isCorrect = false;
         while (!isCorrect) {
             Player player = new Player(Input.receiveNumberInput());
-            inputAnswer = player.getInputAnswer();
-            isCorrect = gamePlay();
+            ArrayList<Integer> inputAnswer = player.getInputAnswer();
+            isCorrect = gamePlay(rightAnswer, inputAnswer);
         }
     }
 
-    private Boolean gamePlay() {
-        int ball = getBall();
-        int strike = getStrike();
+    private Boolean gamePlay(ArrayList<Integer> rightAnswer, ArrayList<Integer> inputAnswer) {
+        int ball = getBall(rightAnswer, inputAnswer);
+        int strike = getStrike(rightAnswer, inputAnswer);
 
         String gameResult = getGameResult(ball, Output.RESULT_BALL_MESSAGE) + getGameResult(strike, Output.RESULT_STRIKE_MESSAGE);
         if (gameResult.equals("")) {
@@ -42,7 +39,7 @@ public class Game {
         return isCorrect(strike);
     }
 
-    private int getBall() {
+    private int getBall(ArrayList<Integer> rightAnswer, ArrayList<Integer> inputAnswer) {
         int ball = 0;
         for (int i = 0; i < NUMBER_OF_DIGITS; i++) {
             ball += (compareValue(rightAnswer, inputAnswer.get(i)) - compareSameLocationValue(rightAnswer.get(i), inputAnswer.get(i)));
@@ -50,7 +47,7 @@ public class Game {
         return ball;
     }
 
-    private int getStrike() {
+    private int getStrike(ArrayList<Integer> rightAnswer, ArrayList<Integer> inputAnswer) {
         int strike = 0;
         for (int i = 0; i < NUMBER_OF_DIGITS; i++) {
             strike += compareSameLocationValue(rightAnswer.get(i), inputAnswer.get(i));
